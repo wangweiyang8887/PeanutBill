@@ -83,7 +83,6 @@
 		20D87ADF2D643AA500900FF0 = {
 			isa = PBXGroup;
 			children = (
-				2000D0832D644DCA00B31277 /* PeanutBillModel.xcdatamodeld */,
 				20D87AEA2D643AA500900FF0 /* PeanutBill */,
 				20D87AE92D643AA500900FF0 /* Products */,
 			);
@@ -100,6 +99,7 @@
 		20D87AEA2D643AA500900FF0 /* PeanutBill */ = {
 			isa = PBXGroup;
 			children = (
+				2000D0832D644DCA00B31277 /* PeanutBillModel.xcdatamodeld */,
 				2000D0922D64576D00B31277 /* Views */,
 				2000D08B2D64576700B31277 /* Models */,
 				2000D0872D64576100B31277 /* Extensions */,
@@ -416,8 +416,7 @@
 				2000D0842D644DCA00B31277 /* PeanutBillModel.xcdatamodel */,
 			);
 			currentVersion = 2000D0842D644DCA00B31277 /* PeanutBillModel.xcdatamodel */;
-			name = PeanutBillModel.xcdatamodeld;
-			path = /Users/evan/Desktop/workspace/PeanutBill/PeanutBillModel.xcdatamodeld;
+			path = PeanutBillModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -8,12 +8,12 @@
 import SwiftUI
 import CoreData
 
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var selectedDate = Date()
     @State private var selectedTab = 0
     @State private var showingIncome = false
+    @State private var showingAddTransaction = false
     
     // 计算选中月份的起始日期和结束日期
     private var dateRange: (start: Date, end: Date) {
@@ -66,89 +66,101 @@ struct ContentView: View {
         transactions.nsPredicate = predicate
     }
     
-    @State private var showingAddTransaction = false
-    
     var body: some View {
         TabView(selection: $selectedTab) {
             // 账本页面
             NavigationView {
-                VStack {
-                    // 月份选择器
-                    DatePicker("选择月份", 
-                             selection: $selectedDate,
-                             displayedComponents: [.date])
-                        .datePickerStyle(.compact)
-                        .padding()
-                        .onChange(of: selectedDate) { _, _ in
-                            updateDateRange()
-                        }
-                    
-                    List {
-                        // 总额显示区域作为第一个 cell
-                        Section {
-                            VStack(spacing: 12) {
-                                HStack {
-                                    Text(showingIncome ? "总收入" : "总支出")
-                                        .font(.headline)
-                                    Spacer()
-                                    Button(action: {
-                                        withAnimation {
-                                            showingIncome.toggle()
+                ZStack {
+                    VStack {
+                        // 月份选择器
+                        DatePicker("选择月份", 
+                                 selection: $selectedDate,
+                                 displayedComponents: [.date])
+                            .datePickerStyle(.compact)
+                            .padding()
+                            .onChange(of: selectedDate) { _, _ in
+                                updateDateRange()
+                            }
+                        
+                        List {
+                            // 总额显示区域作为第一个 cell
+                            Section {
+                                VStack(spacing: 12) {
+                                    HStack {
+                                        Text(showingIncome ? "总收入" : "总支出")
+                                            .font(.headline)
+                                        Spacer()
+                                        Button(action: {
+                                            withAnimation {
+                                                showingIncome.toggle()
+                                            }
+                                        }) {
+                                            Image(systemName: "arrow.2.squarepath")
+                                                .foregroundColor(.blue)
                                         }
-                                    }) {
-                                        Image(systemName: "arrow.2.squarepath")
-                                            .foregroundColor(.blue)
-                                    }
-                                }
-                                
-                                Text("¥ \(showingIncome ? String(format: "%.2f", totalIncome) : String(format: "%.2f", totalExpense))")
-                                    .font(.system(size: 28, weight: .bold))
-                                    .foregroundColor(showingIncome ? .green : .red)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .transition(.opacity)
-                                
-                                HStack(spacing: 40) {
-                                    VStack(alignment: .leading) {
-                                        Text("收入")
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
-                                        Text("¥\(String(format: "%.2f", totalIncome))")
-                                            .font(.subheadline)
-                                            .foregroundColor(.green)
                                     }
                                     
-                                    VStack(alignment: .leading) {
-                                        Text("支出")
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
-                                        Text("¥\(String(format: "%.2f", totalExpense))")
-                                            .font(.subheadline)
-                                            .foregroundColor(.red)
+                                    Text("¥ \(showingIncome ? String(format: "%.2f", totalIncome) : String(format: "%.2f", totalExpense))")
+                                        .font(.system(size: 28, weight: .bold))
+                                        .foregroundColor(showingIncome ? .green : .red)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .transition(.opacity)
+                                    
+                                    HStack(spacing: 40) {
+                                        VStack(alignment: .leading) {
+                                            Text("收入")
+                                                .font(.caption)
+                                                .foregroundColor(.gray)
+                                            Text("¥\(String(format: "%.2f", totalIncome))")
+                                                .font(.subheadline)
+                                                .foregroundColor(.green)
+                                        }
+                                        
+                                        VStack(alignment: .leading) {
+                                            Text("支出")
+                                                .font(.caption)
+                                                .foregroundColor(.gray)
+                                            Text("¥\(String(format: "%.2f", totalExpense))")
+                                                .font(.subheadline)
+                                                .foregroundColor(.red)
+                                        }
                                     }
                                 }
+                                .padding(.vertical, 8)
                             }
-                            .padding(.vertical, 8)
+                            
+                            // 交易记录列表
+                            Section {
+                                ForEach(transactions) { transaction in
+                                    TransactionRow(transaction: transaction)
+                                }
+                            }
                         }
-                        
-                        // 交易记录列表
-                        Section {
-                            ForEach(transactions) { transaction in
-                                TransactionRow(transaction: transaction)
+                        .listStyle(InsetGroupedListStyle())
+                    }
+                    
+                    // 悬浮添加按钮
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                showingAddTransaction = true
+                            }) {
+                                Image(systemName: "plus")
+                                    .font(.title2)
+                                    .foregroundColor(.white)
+                                    .frame(width: 60, height: 60)
+                                    .background(Color.blue)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 4)
                             }
+                            .padding(.trailing, 20)
+                            .padding(.bottom, 20)
                         }
                     }
-                    .listStyle(InsetGroupedListStyle())
                 }
                 .navigationTitle("账本")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            showingAddTransaction = true
-                        }) {
-                            Image(systemName: "plus")
-                        }
-                    }
-                }
             }
             .tabItem {
                 Image(systemName: "list.bullet")
@@ -156,7 +168,7 @@ struct ContentView: View {
             }
             .tag(0)
             
-            // 更新统计页面
+            // 统计页面
             NavigationView {
                 StatisticsView()
             }

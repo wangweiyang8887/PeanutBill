@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2000D0852D644DCA00B31277 /* PeanutBillModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2000D0832D644DCA00B31277 /* PeanutBillModel.xcdatamodeld */; };
 		20D87AEC2D643AA500900FF0 /* PeanutBillApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D87AEB2D643AA500900FF0 /* PeanutBillApp.swift */; };
 		20D87AEE2D643AA500900FF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D87AED2D643AA500900FF0 /* ContentView.swift */; };
 		20D87AF02D643AA600900FF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20D87AEF2D643AA600900FF0 /* Assets.xcassets */; };
 		20D87AF32D643AA600900FF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20D87AF22D643AA600900FF0 /* Preview Assets.xcassets */; };
+		20D87AFD2D643CFD00900FF0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D87AFC2D643CFD00900FF0 /* Persistence.swift */; };
+		20D87AFF2D643D4600900FF0 /* TransactionEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D87AFE2D643D4600900FF0 /* TransactionEntity+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2000D0842D644DCA00B31277 /* PeanutBillModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeanutBillModel.xcdatamodel; sourceTree = "<group>"; };
 		20D87AE82D643AA500900FF0 /* PeanutBill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeanutBill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D87AEB2D643AA500900FF0 /* PeanutBillApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeanutBillApp.swift; sourceTree = "<group>"; };
 		20D87AED2D643AA500900FF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		20D87AEF2D643AA600900FF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20D87AF22D643AA600900FF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		20D87AFC2D643CFD00900FF0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		20D87AFE2D643D4600900FF0 /* TransactionEntity+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TransactionEntity+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +41,7 @@
 		20D87ADF2D643AA500900FF0 = {
 			isa = PBXGroup;
 			children = (
+				2000D0832D644DCA00B31277 /* PeanutBillModel.xcdatamodeld */,
 				20D87AEA2D643AA500900FF0 /* PeanutBill */,
 				20D87AE92D643AA500900FF0 /* Products */,
 			);
@@ -51,8 +58,10 @@
 		20D87AEA2D643AA500900FF0 /* PeanutBill */ = {
 			isa = PBXGroup;
 			children = (
+				20D87AFC2D643CFD00900FF0 /* Persistence.swift */,
 				20D87AEB2D643AA500900FF0 /* PeanutBillApp.swift */,
 				20D87AED2D643AA500900FF0 /* ContentView.swift */,
+				20D87AFE2D643D4600900FF0 /* TransactionEntity+Extension.swift */,
 				20D87AEF2D643AA600900FF0 /* Assets.xcassets */,
 				20D87AF12D643AA600900FF0 /* Preview Content */,
 			);
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D87AFF2D643D4600900FF0 /* TransactionEntity+Extension.swift in Sources */,
 				20D87AEE2D643AA500900FF0 /* ContentView.swift in Sources */,
+				2000D0852D644DCA00B31277 /* PeanutBillModel.xcdatamodeld in Sources */,
+				20D87AFD2D643CFD00900FF0 /* Persistence.swift in Sources */,
 				20D87AEC2D643AA500900FF0 /* PeanutBillApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +356,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2000D0832D644DCA00B31277 /* PeanutBillModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2000D0842D644DCA00B31277 /* PeanutBillModel.xcdatamodel */,
+			);
+			currentVersion = 2000D0842D644DCA00B31277 /* PeanutBillModel.xcdatamodel */;
+			name = PeanutBillModel.xcdatamodeld;
+			path = /Users/evan/Desktop/workspace/PeanutBill/PeanutBillModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 20D87AE02D643AA500900FF0 /* Project object */;
 }

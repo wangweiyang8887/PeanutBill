@@ -1,0 +1,8 @@
+// 创建一个新的 Core Data 模型文件，包含以下实体：
+entity TransactionEntity {
+    attribute amount: Double
+    attribute category: String
+    attribute date: Date
+    attribute id: UUID
+    attribute type: String
+} 
